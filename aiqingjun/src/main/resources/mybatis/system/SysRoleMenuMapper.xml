@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aiqingjun.mapper.system.SysRoleMenuMapper">
+  <resultMap id="BaseResultMap" type="com.aiqingjun.model.system.SysRoleMenuKey">
+    <id column="role_id" jdbcType="VARCHAR" property="roleId" />
+    <id column="menu_id" jdbcType="VARCHAR" property="menuId" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="com.aiqingjun.model.system.SysRoleMenuKey">
+    delete from sys_role_menu
+    where role_id = #{roleId,jdbcType=VARCHAR}
+      and menu_id = #{menuId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.aiqingjun.model.system.SysRoleMenuKey">
+    insert into sys_role_menu (role_id, menu_id)
+    values (#{roleId,jdbcType=VARCHAR}, #{menuId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.aiqingjun.model.system.SysRoleMenuKey">
+    insert into sys_role_menu
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="roleId != null">
+        role_id,
+      </if>
+      <if test="menuId != null">
+        menu_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="roleId != null">
+        #{roleId,jdbcType=VARCHAR},
+      </if>
+      <if test="menuId != null">
+        #{menuId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>
